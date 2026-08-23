@@ -1,0 +1,60 @@
+{
+  "name": "@deijose/nix-language-server",
+  "version": "1.0.0",
+  "description": "LSP server for Nix.js html`` tagged templates",
+  "type": "module",
+  "license": "MIT",
+  "author": "Deiver Vasquez",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeijoseDevelop/nix-language-server.git"
+  },
+  "bin": {
+    "nix-language-server": "./bin/nix-language-server.js"
+  },
+  "main": "./dist/server.js",
+  "exports": {
+    ".": "./dist/server.js",
+    "./browser": "./dist/server-browser.js"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "keywords": [
+    "lsp",
+    "language-server",
+    "nix-js",
+    "html",
+    "tagged-template",
+    "diagnostics",
+    "completion"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11",
+    "vscode-uri": "^3.0.8"
+  },
+  "peerDependencies": {
+    "@deijose/nix-js": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@deijose/nix-js": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
