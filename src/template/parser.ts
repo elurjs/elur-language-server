@@ -85,7 +85,7 @@ export function tokenize(html: string): Token[] {
         const closeIdx = end === -1 ? len : end + 1;
         const raw = html.slice(i, closeIdx);
         const tagMatch = raw.match(/^<\/([a-zA-Z][a-zA-Z0-9-]*)/);
-        const tag = tagMatch ? tagMatch[1].toLowerCase() : "";
+        const tag = tagMatch ? tagMatch[1] : "";
         tokens.push({ type: TOKEN.CLOSE_TAG, raw, tag });
         i = closeIdx;
         continue;
@@ -122,7 +122,7 @@ function consumeOpenTag(html: string, from: number): Token | null {
   while (i < len && /[a-zA-Z0-9-]/.test(html[i])) i++;
   if (i === tagNameStart) return null;
 
-  const tag = html.slice(tagNameStart, i).toLowerCase();
+  const tag = html.slice(tagNameStart, i);
   const attrsStart = i;
 
   while (i < len && html[i] !== ">") {
@@ -157,7 +157,7 @@ function consumeOpenTag(html: string, from: number): Token | null {
   const raw = html.slice(from, i);
   let attrsRaw = html.slice(attrsStart, i - 1).trimEnd();
 
-  let selfClose = VOID_ELEMENTS.has(tag);
+  let selfClose = VOID_ELEMENTS.has(tag.toLowerCase());
   while (/(?:^|\s)\/\s*$/.test(attrsRaw)) {
     selfClose = true;
     attrsRaw = attrsRaw.replace(/\s*\/\s*$/, "").trimEnd();

@@ -21,7 +21,9 @@ export interface TextDiagnostic {
   data: DiagnosticData;
 }
 
-const EVENT_CHAIN_RE = /@([a-zA-Z][a-zA-Z0-9:-]*)((?:\.[a-zA-Z0-9-]+)*)\s*=/g;
+// Match @event.modifier chains with or without trailing = (so diagnostics
+// appear while the user is still typing, before completing the binding).
+const EVENT_CHAIN_RE = /@([a-zA-Z][a-zA-Z0-9:-]*)((?:\.[a-zA-Z0-9-]+)*)(?:\s*=(?![=]))?/g;
 
 /**
  * Scans text for @event.modifier chains and returns diagnostics for all issues.

@@ -2,27 +2,14 @@
  * provider.ts — Formatting provider for the LSP server.
  *
  * Formats html`` tagged template regions in JS/TS documents.
- * Ported from nix-js-vscode/formatter.js provideFormattingEdits().
+ * Uses a tree-based formatter that produces JSX/Lit-style output.
  */
 
 import type { Connection, TextDocuments } from "vscode-languageserver/node.js";
 import type { TextDocument } from "vscode-languageserver-textdocument";
 import { TextEdit } from "vscode-languageserver/node.js";
 import { findTemplateRegions, type TemplateRegion } from "../template/detector.js";
-import { tokenize, TOKEN, INLINE_ELEMENTS, type Token } from "./tokenizer.js";
-import { renderTokens } from "./renderer.js";
-
-const MAX_LINE_WIDTH = 80;
-
-function isSingleLineCandidate(tokens: Token[]): boolean {
-  for (const t of tokens) {
-    if (t.type === TOKEN.OPEN_TAG && !INLINE_ELEMENTS.has(t.tag || "")) return false;
-    if (t.type === TOKEN.CLOSE_TAG && !INLINE_ELEMENTS.has(t.tag || "")) return false;
-    if (t.type === TOKEN.COMMENT) return false;
-    if (t.type === TOKEN.DOCTYPE) return false;
-  }
-  return true;
-}
+import { formatTemplateInner } from "./printer.js";
 
 function formatTemplateRegion(
   region: TemplateRegion,
@@ -32,25 +19,9 @@ function formatTemplateRegion(
   const { inner, baseIndent } = region;
   if (inner.trim() === "") return null;
 
-  const contentIndent = baseIndent + 1;
-  const tokens = tokenize(inner);
-
-  if (isSingleLineCandidate(tokens)) {
-    const flat = tokens.map((t) => collapseWhitespace(t.raw)).join("").trim();
-    if (!flat.includes("\n") && flat.length <= MAX_LINE_WIDTH) {
-      return `\n${indentChar.repeat(contentIndent)}${flat}\n${indentChar.repeat(baseIndent)}`;
-    }
-  }
-
-  const lines = renderTokens(tokens, contentIndent, indentChar);
-  if (lines.length === 0) return null;
-
-  const body = lines.join("\n");
-  return `\n${body}\n${indentChar.repeat(baseIndent)}`;
-}
-
-function collapseWhitespace(text: string): string {
-  return text.replace(/\s+/g, " ");
+  const formatted = formatTemplateInner(inner, baseIndent, indentChar);
+  if (formatted === inner) return null;
+  return formatted;
 }
 
 export function registerFormatting(
@@ -80,7 +51,7 @@ export function registerFormatting(
       if (isContained) continue;
 
       const formatted = formatTemplateRegion(region, indentChar, tabSize);
-      if (formatted !== null && formatted !== region.inner) {
+      if (formatted !== null) {
         edits.push({
           range: {
             start: document.positionAt(region.innerStart),
@@ -95,7 +66,6 @@ export function registerFormatting(
   });
 
   connection.onDocumentRangeFormatting((params) => {
-    // Range formatting: only format regions that overlap the range
     const document = documents.get(params.textDocument.uri);
     if (!document) return null;
 
@@ -122,7 +92,7 @@ export function registerFormatting(
       if (isContained) continue;
 
       const formatted = formatTemplateRegion(region, indentChar, tabSize);
-      if (formatted !== null && formatted !== region.inner) {
+      if (formatted !== null) {
         edits.push({
           range: {
             start: document.positionAt(region.innerStart),

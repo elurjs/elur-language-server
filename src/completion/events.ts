@@ -13,6 +13,7 @@ export function buildEventCompletions(prefix: string): CompletionItem[] {
     .map((eventName) => ({
       label: `@${eventName}`,
       kind: CompletionItemKind.Event,
+      filterText: `@${eventName}`,
       insertText: `@${eventName}=\${1}`,
       insertTextFormat: 2,
       detail: "Nix event binding",
