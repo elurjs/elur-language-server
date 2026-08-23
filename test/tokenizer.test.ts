@@ -33,4 +33,19 @@ describe("tokenize", () => {
     expect(tokens[0].type).toBe(TOKEN.OPEN_TAG);
     expect(tokens[0].tag).toBe("div");
   });
+
+  it("preserves partial interpolations inside quoted attribute values", () => {
+    const tokens = tokenize('<a class="btn ${size}" href="/x/${slug}">y</a>');
+    expect(tokens[0].type).toBe(TOKEN.OPEN_TAG);
+    expect(tokens[0].attrs).toContain('class="btn ${size}"');
+    expect(tokens[0].attrs).toContain('href="/x/${slug}"');
+    const exprCount = (tokens[0].attrs?.match(/\$\{/g) ?? []).length;
+    expect(exprCount).toBe(2);
+  });
+
+  it("preserves partial interpolations inside single-quoted and unquoted values", () => {
+    const tokens = tokenize("<div data-x='a ${b}' id=pre-${slug}>y</div>");
+    expect(tokens[0].attrs).toContain("data-x='a ${b}'");
+    expect(tokens[0].attrs).toContain("id=pre-${slug}");
+  });
 });
