@@ -4,7 +4,6 @@
  * Ported from nix-js-vscode/extension.js validateDocument().
  */
 
-import type { ModifierIssue } from "../modifiers/analyzer.js";
 import { analyzeEventModifiers } from "../modifiers/analyzer.js";
 
 export interface DiagnosticData {

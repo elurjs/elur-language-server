@@ -7,7 +7,7 @@
 
 import type { Connection, TextDocuments } from "vscode-languageserver/node.js";
 import type { TextDocument } from "vscode-languageserver-textdocument";
-import { TextEdit, Range } from "vscode-languageserver/node.js";
+import { TextEdit } from "vscode-languageserver/node.js";
 import { findTemplateRegions, type TemplateRegion } from "../template/detector.js";
 import { tokenize, TOKEN, INLINE_ELEMENTS, type Token } from "./tokenizer.js";
 import { renderTokens } from "./renderer.js";

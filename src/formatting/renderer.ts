@@ -75,16 +75,6 @@ function formatOpenTag(
   return result;
 }
 
-function isSingleLineCandidate(tokens: Token[]): boolean {
-  for (const t of tokens) {
-    if (t.type === TOKEN.OPEN_TAG && !INLINE_ELEMENTS.has(t.tag || "")) return false;
-    if (t.type === TOKEN.CLOSE_TAG && !INLINE_ELEMENTS.has(t.tag || "")) return false;
-    if (t.type === TOKEN.COMMENT) return false;
-    if (t.type === TOKEN.DOCTYPE) return false;
-  }
-  return true;
-}
-
 /**
  * Renders a token list into formatted lines at the given base depth.
  */

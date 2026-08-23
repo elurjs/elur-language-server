@@ -1,4 +1,4 @@
-# @deijose/nix-language-server
+# @deijose/nix-js-language-server
 
 LSP (Language Server Protocol) server for [Nix.js](https://nix-js.dev/) `html\`\`` tagged templates.
 
@@ -17,7 +17,7 @@ works in **any** editor that supports LSP.
 ## Install
 
 ```bash
-npm install @deijose/nix-language-server
+npm install @deijose/nix-js-language-server
 ```
 
 ## Editor setup
@@ -30,7 +30,7 @@ The `vscode-nix-js` extension launches this server automatically.
 
 ```lua
 require("lspconfig").nixjs = {
-  cmd = { "nix-language-server", "--stdio" },
+  cmd = { "nix-js-language-server", "--stdio" },
   filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
 }
 ```
@@ -41,20 +41,20 @@ require("lspconfig").nixjs = {
 # ~/.config/helix/languages.toml
 [[language]]
 name = "typescript"
-language-servers = ["nix-language-server"]
+language-servers = ["nix-js-language-server"]
 ```
 
 ### Zed
 
 ```json
-"language_servers": ["nix-language-server"]
+"language_servers": ["nix-js-language-server"]
 ```
 
 ### Emacs (eglot)
 
 ```elisp
 (add-to-list 'eglot-server-programs
-  '((typescript-mode) . ("nix-language-server" "--stdio")))
+  '((typescript-mode) . ("nix-js-language-server" "--stdio")))
 ```
 
 ## Development

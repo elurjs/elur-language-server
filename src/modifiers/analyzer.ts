@@ -4,7 +4,7 @@
  * Ported from nix-js-vscode/event-modifiers.js analyzeEventModifiers().
  */
 
-import { EVENT_MODIFIERS, KEY_MODIFIERS, KEY_EVENTS, KNOWN_MODIFIERS } from "./constants.js";
+import { KEY_MODIFIERS, KEY_EVENTS, KNOWN_MODIFIERS } from "./constants.js";
 import { normalizeModifierOrder } from "./normalizer.js";
 
 export type ModifierIssueType =

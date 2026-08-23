@@ -1,5 +1,5 @@
 {
-  "name": "@deijose/nix-language-server",
+  "name": "@deijose/nix-js-language-server",
   "version": "1.0.0",
   "description": "LSP server for Nix.js html`` tagged templates",
   "type": "module",
@@ -7,10 +7,10 @@
   "author": "Deiver Vasquez",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DeijoseDevelop/nix-language-server.git"
+    "url": "git+https://github.com/DeijoseDevelop/nix-js-language-server.git"
   },
   "bin": {
-    "nix-language-server": "./bin/nix-language-server.js"
+    "nix-js-language-server": "./bin/nix-js-language-server.js"
   },
   "main": "./dist/server.js",
   "exports": {

@@ -6,7 +6,6 @@ import type { Connection, TextDocuments } from "vscode-languageserver/node.js";
 import type { TextDocument } from "vscode-languageserver-textdocument";
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver/node.js";
 import { scanDiagnostics, type TextDiagnostic } from "./rules.js";
-import { isInsideTaggedTemplate } from "../template/detector.js";
 
 const SUPPORTED_LANGUAGES = new Set([
   "javascript", "typescript", "javascriptreact", "typescriptreact",

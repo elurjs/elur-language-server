@@ -2,9 +2,7 @@
  * config.ts — Read settings from the LSP client.
  */
 
-import type { Connection } from "vscode-languageserver/node.js";
-
-export interface NixLspConfig {
+export interface NixJsLspConfig {
   enableDiagnostics: boolean;
   enableStyleHints: boolean;
   enableCompletions: boolean;
@@ -14,7 +12,7 @@ export interface NixLspConfig {
   templateTags: string[];
 }
 
-const DEFAULT_CONFIG: NixLspConfig = {
+export const DEFAULT_CONFIG: NixJsLspConfig = {
   enableDiagnostics: true,
   enableStyleHints: true,
   enableCompletions: true,
@@ -23,16 +21,3 @@ const DEFAULT_CONFIG: NixLspConfig = {
   formatOnSave: true,
   templateTags: ["html"],
 };
-
-export function readConfig(connection: Connection): NixLspConfig {
-  try {
-    const raw = connection.workspace
-      ? null // getConfiguration is async; handled in onInitialized
-      : null;
-    return DEFAULT_CONFIG;
-  } catch {
-    return DEFAULT_CONFIG;
-  }
-}
-
-export { DEFAULT_CONFIG };
