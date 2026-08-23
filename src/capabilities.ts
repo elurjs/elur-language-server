@@ -19,10 +19,6 @@ export function getCapabilities(): InitializeResult {
       },
       documentFormattingProvider: true,
       documentRangeFormattingProvider: true,
-      diagnosticProvider: {
-        interFileDependencies: false,
-        workspaceDiagnostics: false,
-      },
     },
   };
 }

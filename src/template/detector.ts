@@ -39,18 +39,19 @@ export function extractTemplateTagBeforeBacktick(textBeforeCursor: string): stri
 
 /**
  * Returns true if the cursor at `cursorOffset` is inside a html`` tagged template.
+ *
+ * Uses findTemplateRegions to correctly handle nested template literals
+ * (e.g. `html\`<div>${() => \`inner\`}</div>\``).
  */
 export function isInsideTaggedTemplate(
   documentText: string,
   cursorOffset: number,
-  allowedTags: readonly string[] = [TEMPLATE_TAG],
+  _allowedTags: readonly string[] = [TEMPLATE_TAG],
 ): boolean {
-  const before = documentText.slice(0, cursorOffset);
-  const tagName = extractTemplateTagBeforeBacktick(before);
-  if (!tagName || !allowedTags.includes(tagName)) return false;
-
-  const nextBacktick = documentText.indexOf("`", cursorOffset);
-  return nextBacktick !== -1;
+  const regions = findTemplateRegions(documentText);
+  return regions.some(
+    (r) => cursorOffset >= r.innerStart && cursorOffset <= r.innerEnd,
+  );
 }
 
 /**
