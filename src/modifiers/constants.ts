@@ -41,7 +41,7 @@ export const EVENT_BINDINGS = [
 
 export const DIRECTIVE_ATTRIBUTES = ["ref", "show", "hide"] as const;
 
-export const TEMPLATE_TAGS = ["html"] as const;
+export const TEMPLATE_TAGS = ["html", "raw"] as const;
 
 export const MODIFIER_HELP: Readonly<Record<string, string>> = {
   prevent: "Calls event.preventDefault()",

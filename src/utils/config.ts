@@ -19,5 +19,5 @@ export const DEFAULT_CONFIG: NixJsLspConfig = {
   enableModifierSuggestions: true,
   enableFormatting: true,
   formatOnSave: true,
-  templateTags: ["html"],
+  templateTags: ["html", "raw"],
 };

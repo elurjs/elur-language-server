@@ -28,7 +28,7 @@ export interface ScopeInfo {
 export function getCursorContext(
   documentText: string,
   cursorOffset: number,
-  allowedTags: readonly string[] = ["html"],
+  allowedTags: readonly string[] = ["html", "raw"],
 ): ScopeInfo {
   if (!isInsideTaggedTemplate(documentText, cursorOffset, allowedTags)) {
     return { context: "outside-template" };
