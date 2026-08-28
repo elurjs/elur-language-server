@@ -16,7 +16,7 @@ export function buildEventCompletions(prefix: string): CompletionItem[] {
       filterText: `@${eventName}`,
       insertText: `@${eventName}=\${1}`,
       insertTextFormat: 2,
-      detail: "Nix event binding",
+      detail: "Elur event binding",
       documentation: `Bind ${eventName} inside html tagged templates.`,
     }));
 }

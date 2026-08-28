@@ -4,7 +4,7 @@
  * Recognizes both tagged templates (html`...`) and function-wrapped template
  * literals (raw(`...`)). The inner HTML content is treated identically.
  *
- * Ported from nix-js-vscode/template-tags.js.
+ * Ported from elur-vscode/template-tags.js.
  */
 
 const TEMPLATE_TAGS = new Set(["html", "raw"]);

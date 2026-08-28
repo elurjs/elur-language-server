@@ -2,7 +2,7 @@
  * config.ts — Read settings from the LSP client.
  */
 
-export interface NixJsLspConfig {
+export interface ElurLspConfig {
   enableDiagnostics: boolean;
   enableStyleHints: boolean;
   enableCompletions: boolean;
@@ -12,7 +12,7 @@ export interface NixJsLspConfig {
   templateTags: string[];
 }
 
-export const DEFAULT_CONFIG: NixJsLspConfig = {
+export const DEFAULT_CONFIG: ElurLspConfig = {
   enableDiagnostics: true,
   enableStyleHints: true,
   enableCompletions: true,

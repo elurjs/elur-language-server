@@ -1,7 +1,7 @@
 /**
  * normalizer.ts — Normalize modifier order.
  *
- * Ported from nix-js-vscode/event-modifiers.js.
+ * Ported from elur-vscode/event-modifiers.js.
  */
 
 import { EVENT_MODIFIER_ORDER, KEY_MODIFIER_ORDER, EVENT_MODIFIERS, KEY_MODIFIERS } from "./constants.js";

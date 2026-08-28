@@ -1,8 +1,8 @@
 /**
  * constants.ts — Event modifiers, key modifiers, events, directives.
  *
- * Ported from nix-js-vscode/event-modifiers.js and extension.js.
- * Single source of truth for all Nix.js template tooling.
+ * Ported from elur-vscode/event-modifiers.js and extension.js.
+ * Single source of truth for all Elur template tooling.
  */
 
 export const EVENT_MODIFIERS = [

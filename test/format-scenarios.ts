@@ -1,7 +1,7 @@
 /**
  * format-scenarios.ts — Realistic formatting test scenarios.
  *
- * These represent the actual patterns used in Nix.js apps:
+ * These represent the actual patterns used in Elur apps:
  * - Function components
  * - Class components with `new`
  * - setChildren / setSlot chaining
@@ -73,7 +73,7 @@ export const scenarios: Scenario[] = [
   // ── 2. Class component with lifecycle ─────────────────────────────────────
   {
     name: "class component with lifecycle",
-    input: `class Timer extends NixComponent {
+    input: `class Timer extends ElurComponent {
   count = signal(0);
   onMount() {
     this._id = setInterval(() => this.count.update(n => n + 1), 1000);
@@ -83,7 +83,7 @@ export const scenarios: Scenario[] = [
     return html\`<span>\${() => this.count.value}s</span>\`;
   }
 }`,
-    expected: `class Timer extends NixComponent {
+    expected: `class Timer extends ElurComponent {
   count = signal(0);
   onMount() {
     this._id = setInterval(() => this.count.update(n => n + 1), 1000);
@@ -149,13 +149,13 @@ export const scenarios: Scenario[] = [
   // ── 6. Nested components (class inside class) ─────────────────────────────
   {
     name: "nested class components",
-    input: `class ThemedButton extends NixComponent {
+    input: `class ThemedButton extends ElurComponent {
   render() {
     return html\`<button style=\${() => \`background:\${this.theme}\`}>Click me</button>\`;
   }
 }
 
-class ThemeProvider extends NixComponent {
+class ThemeProvider extends ElurComponent {
   render() {
     return html\`
       <div>
@@ -164,13 +164,13 @@ class ThemeProvider extends NixComponent {
     \`;
   }
 }`,
-    expected: `class ThemedButton extends NixComponent {
+    expected: `class ThemedButton extends ElurComponent {
   render() {
     return html\`<button style=\${() => \`background:\${this.theme}\`}>Click me</button>\`;
   }
 }
 
-class ThemeProvider extends NixComponent {
+class ThemeProvider extends ElurComponent {
   render() {
     return html\`
       <div>

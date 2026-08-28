@@ -1,7 +1,7 @@
 /**
  * parser.ts — Tokenize and parse html`` template inner content.
  *
- * Ported from nix-js-vscode/formatter.js tokenize() and consumeOpenTag().
+ * Ported from elur-vscode/formatter.js tokenize() and consumeOpenTag().
  * Produces a token stream that the formatter can render.
  */
 

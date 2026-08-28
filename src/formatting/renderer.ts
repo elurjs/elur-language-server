@@ -1,7 +1,7 @@
 /**
  * renderer.ts — Render tokens to formatted lines.
  *
- * Ported from nix-js-vscode/formatter.js renderTokens() and formatOpenTag().
+ * Ported from elur-vscode/formatter.js renderTokens() and formatOpenTag().
  */
 
 import {

@@ -1,7 +1,7 @@
 /**
  * suggestions.ts — Modifier completion suggestions and fuzzy matching.
  *
- * Ported from nix-js-vscode/event-modifiers.js.
+ * Ported from elur-vscode/event-modifiers.js.
  */
 
 import { EVENT_MODIFIERS, KEY_MODIFIERS } from "./constants.js";

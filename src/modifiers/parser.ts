@@ -1,7 +1,7 @@
 /**
  * parser.ts — Parse @event.modifier chains from text.
  *
- * Ported from nix-js-vscode/event-modifiers.js.
+ * Ported from elur-vscode/event-modifiers.js.
  */
 
 export interface EventContext {

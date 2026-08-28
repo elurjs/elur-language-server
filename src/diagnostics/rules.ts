@@ -1,7 +1,7 @@
 /**
  * rules.ts — Diagnostic rules for event modifiers.
  *
- * Ported from nix-js-vscode/extension.js validateDocument().
+ * Ported from elur-vscode/extension.js validateDocument().
  */
 
 import { analyzeEventModifiers } from "../modifiers/analyzer.js";

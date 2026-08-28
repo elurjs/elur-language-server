@@ -1,7 +1,7 @@
 /**
  * fixes.ts — Generate quick fixes for modifier issues.
  *
- * Ported from nix-js-vscode/event-modifiers.js createModifierQuickFixes().
+ * Ported from elur-vscode/event-modifiers.js createModifierQuickFixes().
  */
 
 import { analyzeEventModifiers, isKeyEventName } from "../modifiers/analyzer.js";

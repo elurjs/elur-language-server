@@ -1,6 +1,6 @@
-# @deijose/nix-js-language-server
+# @elurjs/language-server
 
-LSP (Language Server Protocol) server for [Nix.js](https://nix-js.dev/) `html\`\`` tagged templates.
+LSP (Language Server Protocol) server for [Elur](https://elur.dev/) `html\`\`` tagged templates.
 
 Provides diagnostics, autocompletion, hover help, quick fixes, and formatting —
 works in **any** editor that supports LSP.
@@ -17,20 +17,20 @@ works in **any** editor that supports LSP.
 ## Install
 
 ```bash
-npm install @deijose/nix-js-language-server
+npm install @elurjs/language-server
 ```
 
 ## Editor setup
 
 ### VS Code
 
-The `vscode-nix-js` extension launches this server automatically.
+The `vscode-elur` extension launches this server automatically.
 
 ### Neovim
 
 ```lua
-require("lspconfig").nixjs = {
-  cmd = { "nix-js-language-server", "--stdio" },
+require("lspconfig").elur = {
+  cmd = { "elur-language-server", "--stdio" },
   filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
 }
 ```
@@ -41,20 +41,20 @@ require("lspconfig").nixjs = {
 # ~/.config/helix/languages.toml
 [[language]]
 name = "typescript"
-language-servers = ["nix-js-language-server"]
+language-servers = ["elur-language-server"]
 ```
 
 ### Zed
 
 ```json
-"language_servers": ["nix-js-language-server"]
+"language_servers": ["elur-language-server"]
 ```
 
 ### Emacs (eglot)
 
 ```elisp
 (add-to-list 'eglot-server-programs
-  '((typescript-mode) . ("nix-js-language-server" "--stdio")))
+  '((typescript-mode) . ("elur-language-server" "--stdio")))
 ```
 
 ## Development

@@ -19,7 +19,7 @@ export function registerCodeActions(
     const actions: CodeAction[] = [];
 
     for (const diagnostic of params.context.diagnostics) {
-      if (diagnostic.source !== "nixjs") continue;
+      if (diagnostic.source !== "elur") continue;
 
       const chainText = document.getText(diagnostic.range);
       const parsed = parseEventBindingChain(chainText);

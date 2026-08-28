@@ -12,7 +12,7 @@ export function buildDirectiveCompletions(): CompletionItem[] {
     kind: CompletionItemKind.Property,
     insertText: `${directive}=\${1}`,
     insertTextFormat: 2,
-    detail: "Nix directive",
-    documentation: `Nix directive attribute: ${directive}.`,
+    detail: "Elur directive",
+    documentation: `Elur directive attribute: ${directive}.`,
   }));
 }

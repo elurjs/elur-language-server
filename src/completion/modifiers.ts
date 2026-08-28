@@ -20,7 +20,7 @@ export function buildModifierCompletions(
     label: `.${modifier}`,
     kind: CompletionItemKind.EnumMember,
     insertText: modifier,
-    detail: isKey ? "Nix key/event modifier" : "Nix event modifier",
-    documentation: MODIFIER_HELP[modifier] || "Nix event modifier",
+    detail: isKey ? "Elur key/event modifier" : "Elur event modifier",
+    documentation: MODIFIER_HELP[modifier] || "Elur event modifier",
   }));
 }

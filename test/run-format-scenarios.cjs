@@ -49,7 +49,7 @@ const scenarios = [
   // 2. Class component with lifecycle (single-line template stays inline)
   {
     name: "class component with lifecycle",
-    input: `class Timer extends NixComponent {
+    input: `class Timer extends ElurComponent {
   count = signal(0);
   onMount() {
     this._id = setInterval(() => this.count.update(n => n + 1), 1000);
@@ -59,7 +59,7 @@ const scenarios = [
     return html\`<span>\${() => this.count.value}s</span>\`;
   }
 }`,
-    expected: `class Timer extends NixComponent {
+    expected: `class Timer extends ElurComponent {
   count = signal(0);
   onMount() {
     this._id = setInterval(() => this.count.update(n => n + 1), 1000);
@@ -125,7 +125,7 @@ const scenarios = [
   // 6. Nested class components
   {
     name: "nested class components",
-    input: `class ThemeProvider extends NixComponent {
+    input: `class ThemeProvider extends ElurComponent {
   render() {
     return html\`
       <div>
@@ -134,7 +134,7 @@ const scenarios = [
     \`;
   }
 }`,
-    expected: `class ThemeProvider extends NixComponent {
+    expected: `class ThemeProvider extends ElurComponent {
   render() {
     return html\`
       <div>\${new ThemedButton()}</div>

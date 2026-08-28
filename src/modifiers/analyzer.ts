@@ -1,7 +1,7 @@
 /**
  * analyzer.ts — Analyze event modifiers for issues.
  *
- * Ported from nix-js-vscode/event-modifiers.js analyzeEventModifiers().
+ * Ported from elur-vscode/event-modifiers.js analyzeEventModifiers().
  */
 
 import { KEY_MODIFIERS, KEY_EVENTS, KNOWN_MODIFIERS } from "./constants.js";

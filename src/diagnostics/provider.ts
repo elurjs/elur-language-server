@@ -40,7 +40,7 @@ export function registerDiagnostics(
         severity,
         code: d.code,
         message: d.message,
-        source: "nixjs",
+        source: "elur",
         range: {
           start: document.positionAt(d.range.start),
           end: document.positionAt(d.range.end),
