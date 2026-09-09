@@ -7,6 +7,7 @@ import type { TextDocument } from "vscode-languageserver-textdocument";
 import { CompletionItem, CompletionList, Position } from "vscode-languageserver/node";
 import { parseEventContextFromPrefix } from "../modifiers/parser.js";
 import { isInsideTaggedTemplate } from "../template/detector.js";
+import { getConfig } from "../utils/config.js";
 import { buildEventCompletions } from "./events.js";
 import { buildModifierCompletions } from "./modifiers.js";
 import { buildDirectiveCompletions } from "./directives.js";
@@ -25,10 +26,14 @@ export function registerCompletion(
       return null;
     }
 
+    const config = getConfig();
+
+    if (!config.enableCompletions) return null;
+
     const text = document.getText();
     const offset = document.offsetAt(params.position);
 
-    if (!isInsideTaggedTemplate(text, offset)) {
+    if (!isInsideTaggedTemplate(text, offset, config.templateTags)) {
       return null;
     }
 
@@ -40,6 +45,7 @@ export function registerCompletion(
     const eventContext = parseEventContextFromPrefix(linePrefix);
 
     if (eventContext?.mode === "modifier") {
+      if (!config.enableModifierSuggestions) return null;
       const items = buildModifierCompletions(
         eventContext.eventName || "",
         eventContext.usedModifiers || [],

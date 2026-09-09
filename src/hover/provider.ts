@@ -7,6 +7,7 @@ import type { TextDocument } from "vscode-languageserver-textdocument";
 import { Hover, MarkupKind } from "vscode-languageserver/node";
 import { MODIFIER_HELP } from "../modifiers/constants.js";
 import { isInsideTaggedTemplate } from "../template/detector.js";
+import { getConfig } from "../utils/config.js";
 
 const SUPPORTED_LANGUAGES = new Set([
   "javascript", "typescript", "javascriptreact", "typescriptreact",
@@ -25,7 +26,7 @@ export function registerHover(
     const text = document.getText();
     const offset = document.offsetAt(params.position);
 
-    if (!isInsideTaggedTemplate(text, offset)) {
+    if (!isInsideTaggedTemplate(text, offset, getConfig().templateTags)) {
       return null;
     }
 

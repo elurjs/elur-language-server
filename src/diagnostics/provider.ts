@@ -6,6 +6,7 @@ import type { Connection, TextDocuments } from "vscode-languageserver/node";
 import type { TextDocument } from "vscode-languageserver-textdocument";
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver/node";
 import { scanDiagnostics, type TextDiagnostic } from "./rules.js";
+import { getConfig } from "../utils/config.js";
 
 const SUPPORTED_LANGUAGES = new Set([
   "javascript", "typescript", "javascriptreact", "typescriptreact",
@@ -14,7 +15,7 @@ const SUPPORTED_LANGUAGES = new Set([
 export function registerDiagnostics(
   connection: Connection,
   documents: TextDocuments<TextDocument>,
-): void {
+): () => void {
   function validate(document: TextDocument): void {
     if (!SUPPORTED_LANGUAGES.has(document.languageId)) return;
     const scheme = document.uri.startsWith("file:") ? "file"
@@ -22,14 +23,20 @@ export function registerDiagnostics(
         : "other";
     if (scheme !== "file" && scheme !== "untitled") return;
 
+    const config = getConfig();
+
+    if (!config.enableDiagnostics) {
+      connection.sendDiagnostics({ uri: document.uri, diagnostics: [] });
+      return;
+    }
+
     const text = document.getText();
     if (!text.includes("@")) {
       connection.sendDiagnostics({ uri: document.uri, diagnostics: [] });
       return;
     }
 
-    const enableStyleHints = true; // TODO: read from client config
-    const rawDiags = scanDiagnostics(text, enableStyleHints);
+    const rawDiags = scanDiagnostics(text, config.enableStyleHints);
 
     const diagnostics: Diagnostic[] = rawDiags.map((d: TextDiagnostic) => {
       const severity = d.severity === "information"
@@ -57,4 +64,10 @@ export function registerDiagnostics(
   documents.onDidClose((e) => {
     connection.sendDiagnostics({ uri: e.document.uri, diagnostics: [] });
   });
+
+  // Return a revalidation function for the server to call when
+  // configuration changes (e.g. enableDiagnostics toggled).
+  return () => {
+    documents.all().forEach(validate);
+  };
 }

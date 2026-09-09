@@ -9,6 +9,7 @@ import type { Connection, TextDocuments } from "vscode-languageserver/node";
 import type { TextDocument } from "vscode-languageserver-textdocument";
 import { TextEdit } from "vscode-languageserver/node";
 import { findTemplateRegions, type TemplateRegion } from "../template/detector.js";
+import { getConfig } from "../utils/config.js";
 import { formatTemplateInner } from "./printer.js";
 
 function formatTemplateRegion(
@@ -31,12 +32,15 @@ export function registerFormatting(
     const document = documents.get(params.textDocument.uri);
     if (!document) return null;
 
+    const config = getConfig();
+    if (!config.enableFormatting) return null;
+
     const text = document.getText();
     const tabSize = params.options.tabSize ?? 2;
     const insertSpaces = params.options.insertSpaces ?? true;
     const indentChar = insertSpaces ? " ".repeat(tabSize) : "\t";
 
-    const regions = findTemplateRegions(text, tabSize);
+    const regions = findTemplateRegions(text, tabSize, config.templateTags);
     const edits: TextEdit[] = [];
 
     for (const region of regions) {
@@ -68,6 +72,9 @@ export function registerFormatting(
     const document = documents.get(params.textDocument.uri);
     if (!document) return null;
 
+    const config = getConfig();
+    if (!config.enableFormatting) return null;
+
     const text = document.getText();
     const tabSize = params.options.tabSize ?? 2;
     const insertSpaces = params.options.insertSpaces ?? true;
@@ -76,7 +83,7 @@ export function registerFormatting(
     const rangeStart = document.offsetAt(params.range.start);
     const rangeEnd = document.offsetAt(params.range.end);
 
-    const regions = findTemplateRegions(text, tabSize);
+    const regions = findTemplateRegions(text, tabSize, config.templateTags);
     const edits: TextEdit[] = [];
 
     for (const region of regions) {

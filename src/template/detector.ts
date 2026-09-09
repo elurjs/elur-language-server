@@ -21,26 +21,6 @@ export interface TemplateRegion {
 }
 
 /**
- * Extracts the template tag name immediately before a backtick.
- * Returns null if no valid tag is found.
- */
-export function extractTemplateTagBeforeBacktick(textBeforeCursor: string): string | null {
-  const lastBacktick = textBeforeCursor.lastIndexOf("`");
-  if (lastBacktick < 0) return null;
-
-  const beforeBacktick = textBeforeCursor.slice(0, lastBacktick);
-  let i = beforeBacktick.length - 1;
-
-  while (i >= 0 && /\s/.test(beforeBacktick[i])) i--;
-
-  const end = i;
-  while (i >= 0 && /[\w$]/.test(beforeBacktick[i])) i--;
-
-  const tagName = beforeBacktick.slice(i + 1, end + 1).toLowerCase();
-  return tagName || null;
-}
-
-/**
  * Returns true if the cursor at `cursorOffset` is inside a html`` or raw(``)
  * template region.
  *
@@ -63,7 +43,7 @@ export function isInsideTaggedTemplate(
  * the opening backtick). Handles nested ${...} and nested template literals.
  * Returns -1 if not found.
  */
-export function findTemplateClose(text: string, from: number): number {
+function findTemplateClose(text: string, from: number): number {
   let i = from;
   const len = text.length;
 

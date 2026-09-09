@@ -6,7 +6,7 @@
 
 import { analyzeEventModifiers } from "../modifiers/analyzer.js";
 
-export interface DiagnosticData {
+interface DiagnosticData {
   code: string;
   eventName: string;
   modifiers: string[];
