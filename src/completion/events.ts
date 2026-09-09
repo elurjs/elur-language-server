@@ -3,8 +3,8 @@
  */
 
 import { EVENT_BINDINGS } from "../modifiers/constants.js";
-import type { CompletionItem } from "vscode-languageserver/node.js";
-import { CompletionItemKind } from "vscode-languageserver/node.js";
+import type { CompletionItem } from "vscode-languageserver/node";
+import { CompletionItemKind } from "vscode-languageserver/node";
 
 export function buildEventCompletions(prefix: string): CompletionItem[] {
   const p = (prefix || "").toLowerCase();

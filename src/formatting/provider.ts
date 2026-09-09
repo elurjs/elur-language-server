@@ -5,9 +5,9 @@
  * Uses a tree-based formatter that produces JSX/Lit-style output.
  */
 
-import type { Connection, TextDocuments } from "vscode-languageserver/node.js";
+import type { Connection, TextDocuments } from "vscode-languageserver/node";
 import type { TextDocument } from "vscode-languageserver-textdocument";
-import { TextEdit } from "vscode-languageserver/node.js";
+import { TextEdit } from "vscode-languageserver/node";
 import { findTemplateRegions, type TemplateRegion } from "../template/detector.js";
 import { formatTemplateInner } from "./printer.js";
 

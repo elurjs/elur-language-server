@@ -9,7 +9,7 @@ import {
   TextDocuments,
   ProposedFeatures,
   type InitializeParams,
-} from "vscode-languageserver/node.js";
+} from "vscode-languageserver/node";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import { getCapabilities } from "./capabilities.js";
 import { registerCompletion } from "./completion/provider.js";

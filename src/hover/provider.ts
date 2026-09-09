@@ -2,9 +2,9 @@
  * provider.ts — Hover provider for modifier help.
  */
 
-import type { Connection, TextDocuments } from "vscode-languageserver/node.js";
+import type { Connection, TextDocuments } from "vscode-languageserver/node";
 import type { TextDocument } from "vscode-languageserver-textdocument";
-import { Hover, MarkupKind } from "vscode-languageserver/node.js";
+import { Hover, MarkupKind } from "vscode-languageserver/node";
 import { MODIFIER_HELP } from "../modifiers/constants.js";
 import { isInsideTaggedTemplate } from "../template/detector.js";
 

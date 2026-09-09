@@ -5,8 +5,8 @@
 import { getModifierSuggestions } from "../modifiers/suggestions.js";
 import { MODIFIER_HELP } from "../modifiers/constants.js";
 import { isKeyEventName } from "../modifiers/analyzer.js";
-import type { CompletionItem } from "vscode-languageserver/node.js";
-import { CompletionItemKind } from "vscode-languageserver/node.js";
+import type { CompletionItem } from "vscode-languageserver/node";
+import { CompletionItemKind } from "vscode-languageserver/node";
 
 export function buildModifierCompletions(
   eventName: string,

@@ -2,9 +2,9 @@
  * provider.ts — Diagnostics provider for the LSP server.
  */
 
-import type { Connection, TextDocuments } from "vscode-languageserver/node.js";
+import type { Connection, TextDocuments } from "vscode-languageserver/node";
 import type { TextDocument } from "vscode-languageserver-textdocument";
-import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver/node.js";
+import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver/node";
 import { scanDiagnostics, type TextDiagnostic } from "./rules.js";
 
 const SUPPORTED_LANGUAGES = new Set([

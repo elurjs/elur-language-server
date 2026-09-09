@@ -2,8 +2,8 @@
  * capabilities.ts — LSP capability declarations.
  */
 
-import type { InitializeResult } from "vscode-languageserver/node.js";
-import { TextDocumentSyncKind } from "vscode-languageserver/node.js";
+import type { InitializeResult } from "vscode-languageserver/node";
+import { TextDocumentSyncKind } from "vscode-languageserver/node";
 
 export function getCapabilities(): InitializeResult {
   return {

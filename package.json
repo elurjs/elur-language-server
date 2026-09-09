@@ -38,8 +38,8 @@
     "lint": "eslint src/"
   },
   "dependencies": {
-    "vscode-languageserver": "^9.0.1",
-    "vscode-languageserver-textdocument": "^1.0.11"
+    "vscode-languageserver": "^10.1.1",
+    "vscode-languageserver-textdocument": "^1.0.14"
   },
   "peerDependencies": {
     "@elurjs/core": "^3.0.0"
@@ -51,11 +51,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^20.0.0",
+    "@types/node": "^26.5.0",
+    "@typescript/native": "npm:typescript@~7.0.2",
     "eslint": "^10.10.0",
-    "typescript": "~7.0.2",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.70.0",
-    "vitest": "^4.0.18"
+    "vitest": "^5.0.0"
   },
   "engines": {
     "node": ">=20.19.0"

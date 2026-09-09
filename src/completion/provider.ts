@@ -2,9 +2,9 @@
  * provider.ts — Completion provider for the LSP server.
  */
 
-import type { Connection, TextDocuments } from "vscode-languageserver/node.js";
+import type { Connection, TextDocuments } from "vscode-languageserver/node";
 import type { TextDocument } from "vscode-languageserver-textdocument";
-import { CompletionItem, CompletionList, Position } from "vscode-languageserver/node.js";
+import { CompletionItem, CompletionList, Position } from "vscode-languageserver/node";
 import { parseEventContextFromPrefix } from "../modifiers/parser.js";
 import { isInsideTaggedTemplate } from "../template/detector.js";
 import { buildEventCompletions } from "./events.js";
