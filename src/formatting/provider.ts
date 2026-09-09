@@ -14,7 +14,6 @@ import { formatTemplateInner } from "./printer.js";
 function formatTemplateRegion(
   region: TemplateRegion,
   indentChar: string,
-  tabSize: number,
 ): string | null {
   const { inner, baseIndent } = region;
   if (inner.trim() === "") return null;
@@ -50,7 +49,7 @@ export function registerFormatting(
 
       if (isContained) continue;
 
-      const formatted = formatTemplateRegion(region, indentChar, tabSize);
+      const formatted = formatTemplateRegion(region, indentChar);
       if (formatted !== null) {
         edits.push({
           range: {
@@ -91,7 +90,7 @@ export function registerFormatting(
       );
       if (isContained) continue;
 
-      const formatted = formatTemplateRegion(region, indentChar, tabSize);
+      const formatted = formatTemplateRegion(region, indentChar);
       if (formatted !== null) {
         edits.push({
           range: {
