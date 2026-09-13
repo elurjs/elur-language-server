@@ -42,7 +42,7 @@
     "vscode-languageserver-textdocument": "^1.0.14"
   },
   "peerDependencies": {
-    "@elurjs/core": "^3.0.0"
+    "@elurjs/core": "^3.0.0 || ^3.7.0-beta.0 || ^4.0.0"
   },
   "peerDependenciesMeta": {
     "@elurjs/core": {
